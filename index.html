@@ -1,516 +1,759 @@
-<!DOCTYPE html>
-<html lang="zh-CN">
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>goeontae的博客管理平台</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            primary: '#165DFF',
-            secondary: '#36CFC9',
-            dark: '#1D2129',
-            light: '#F2F3F5',
-            muted: '#86909C'
-          },
-          fontFamily: {
-            sans: ['Inter', 'system-ui', 'sans-serif'],
-          },
-        },
-      }
-    }
-  </script>
-  <style type="text/tailwindcss">
-    @layer utilities {
-      .content-auto {
-        content-visibility: auto;
-      }
-      .transition-custom {
-        transition: all 0.3s ease;
-      }
-      .editor-focus {
-        @apply focus:ring-2 focus:ring-primary/50 focus:border-primary;
-      }
-    }
-  </style>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+<link rel="apple-touch-icon" href="images/apple-touch-icon.png" />
+<link rel="apple-touch-startup-image" href="images/apple-touch-startup-image-320x460.png" />
+<meta name="author" content="FamousThemes" />
+<meta name="description" content="GoMobile - A next generation web app theme" />
+<meta name="keywords" content="mobile web app, mobile template, mobile design, mobile app design, mobile app theme, mobile wordpress theme, my mobile app" />
+<title>仿GoMobile触屏版html5响应式手机app网站模板下载-懒人模板【http://www.lanrenmb.com/HTML5/】</title>
+<link type="text/css" rel="stylesheet" href="css/style.css">
+<link type="text/css" rel="stylesheet" href="colors/wedding/wedding.css">
+<link type="text/css" rel="stylesheet" href="css/idangerous.swiper.css">
+<link type="text/css" rel="stylesheet" href="css/swipebox.css">
+<link href='../../../fonts.googleapis.com/css@family=Lato_3A300' rel='stylesheet' type='text/css'>
 </head>
-<body class="bg-gray-50 font-sans text-dark min-h-screen flex flex-col">
-  <!-- 顶部导航 -->
-  <header class="bg-white shadow-sm sticky top-0 z-50">
-    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="flex justify-between items-center py-4">
-        <a href="#" class="flex items-center space-x-2">
-          <div class="w-10 h-10 rounded-full bg-primary flex items-center justify-center">
-            <span class="text-white font-bold">G</span>
-          </div>
-          <span class="text-xl font-bold text-dark">goeontae</span>
-        </a>
-        
-        <div class="flex items-center space-x-4">
-          <button class="p-2 text-muted hover:text-primary transition-custom relative">
-            <i class="fa fa-bell text-lg"></i>
-            <span class="absolute top-1 right-1 w-2 h-2 bg-red-500 rounded-full"></span>
-          </button>
-          
-          <div class="relative group">
-            <button class="flex items-center space-x-2 focus:outline-none">
-              <img src="https://picsum.photos/id/1005/200/200" alt="用户头像" class="w-8 h-8 rounded-full object-cover border-2 border-white shadow-sm">
-              <span class="hidden md:inline font-medium">goeontae</span>
-              <i class="fa fa-chevron-down text-xs text-muted"></i>
-            </button>
-            
-            <div class="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg py-2 z-10 hidden group-hover:block transition-custom">
-              <a href="#profile" class="block px-4 py-2 text-sm text-dark hover:bg-light transition-custom">
-                <i class="fa fa-user mr-2 text-muted"></i> 个人资料
-              </a>
-              <a href="#settings" class="block px-4 py-2 text-sm text-dark hover:bg-light transition-custom">
-                <i class="fa fa-cog mr-2 text-muted"></i> 博客设置
-              </a>
-              <div class="border-t border-gray-100 my-1"></div>
-              <a href="#" class="block px-4 py-2 text-sm text-red-500 hover:bg-light transition-custom">
-                <i class="fa fa-sign-out mr-2"></i> 退出登录
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </header>
-
-  <!-- 主要内容区 -->
-  <main class="flex-1 container mx-auto px-4 sm:px-6 lg:px-8 py-8">
-    <div class="flex flex-col lg:flex-row gap-8">
-      <!-- 侧边栏 -->
-      <aside class="lg:w-1/5 space-y-6">
-        <!-- 导航菜单 -->
-        <div class="bg-white rounded-xl shadow-sm overflow-hidden">
-          <div class="p-4 border-b border-gray-100">
-            <h3 class="font-bold text-dark">博客管理</h3>
-          </div>
-          <nav class="p-2">
-            <a href="#dashboard" class="flex items-center px-4 py-3 text-sm rounded-lg text-primary bg-primary/5 font-medium">
-              <i class="fa fa-dashboard w-5 text-center mr-3"></i> 控制台
-            </a>
-            <a href="#publish" class="flex items-center px-4 py-3 text-sm rounded-lg text-dark hover:bg-light transition-custom">
-              <i class="fa fa-pencil w-5 text-center mr-3 text-muted"></i> 发布文章
-            </a>
-            <a href="#articles" class="flex items-center px-4 py-3 text-sm rounded-lg text-dark hover:bg-light transition-custom">
-              <i class="fa fa-file-text-o w-5 text-center mr-3 text-muted"></i> 文章管理
-            </a>
-            <a href="#categories" class="flex items-center px-4 py-3 text-sm rounded-lg text-dark hover:bg-light transition-custom">
-              <i class="fa fa-folder-o w-5 text-center mr-3 text-muted"></i> 分类管理
-            </a>
-            <a href="#comments" class="flex items-center px-4 py-3 text-sm rounded-lg text-dark hover:bg-light transition-custom">
-              <i class="fa fa-comments-o w-5 text-center mr-3 text-muted"></i> 评论管理
-            </a>
-            <a href="#analytics" class="flex items-center px-4 py-3 text-sm rounded-lg text-dark hover:bg-light transition-custom">
-              <i class="fa fa-bar-chart w-5 text-center mr-3 text-muted"></i> 数据统计
-            </a>
-          </nav>
-        </div>
-        
-        <!-- 博客状态 -->
-        <div class="bg-white rounded-xl shadow-sm p-6">
-          <h3 class="font-bold text-dark mb-4">博客状态</h3>
-          <div class="space-y-4">
-            <div class="flex justify-between items-center">
-              <span class="text-sm text-muted">已发布文章</span>
-              <span class="font-bold">24</span>
-            </div>
-            <div class="flex justify-between items-center">
-              <span class="text-sm text-muted">草稿</span>
-              <span class="font-bold">7</span>
-            </div>
-            <div class="flex justify-between items-center">
-              <span class="text-sm text-muted">总访问量</span>
-              <span class="font-bold">12,548</span>
-            </div>
-            <div class="flex justify-between items-center">
-              <span class="text-sm text-muted">评论数</span>
-              <span class="font-bold">326</span>
-            </div>
-          </div>
-          <div class="mt-6 pt-6 border-t border-gray-100">
-            <a href="#analytics" class="text-primary text-sm font-medium hover:underline flex items-center">
-              查看详细统计 <i class="fa fa-angle-right ml-1"></i>
-            </a>
-          </div>
-        </div>
-      </aside>
-      
-      <!-- 主内容 -->
-      <div class="lg:w-4/5">
-        <!-- 发布文章区域 -->
-        <section id="publish" class="bg-white rounded-xl shadow-sm p-6 mb-8">
-          <div class="flex justify-between items-center mb-6">
-            <h2 class="text-xl font-bold text-dark">发布新文章</h2>
-            <div class="flex space-x-3">
-              <button class="px-4 py-2 border border-gray-200 rounded-lg text-sm font-medium hover:bg-light transition-custom">
-                <i class="fa fa-save mr-1"></i> 保存草稿
-              </button>
-              <button class="px-4 py-2 bg-primary text-white rounded-lg text-sm font-medium hover:bg-primary/90 transition-custom">
-                <i class="fa fa-paper-plane mr-1"></i> 发布文章
-              </button>
-            </div>
-          </div>
-          
-          <!-- 文章标题 -->
-          <div class="mb-6">
-            <label for="title" class="block text-sm font-medium text-dark mb-2">文章标题</label>
-            <input type="text" id="title" placeholder="请输入文章标题..." class="w-full px-4 py-3 rounded-lg border border-gray-200 focus:outline-none editor-focus transition-custom">
-          </div>
-          
-          <!-- 文章摘要 -->
-          <div class="mb-6">
-            <label for="excerpt" class="block text-sm font-medium text-dark mb-2">文章摘要</label>
-            <textarea id="excerpt" rows="3" placeholder="请输入文章摘要（可选）..." class="w-full px-4 py-3 rounded-lg border border-gray-200 focus:outline-none editor-focus transition-custom"></textarea>
-          </div>
-          
-          <!-- 编辑器工具栏 -->
-          <div class="border border-gray-200 rounded-t-lg bg-gray-50 p-3 mb-0 flex flex-wrap gap-1">
-            <button class="p-2 text-muted hover:text-primary hover:bg-white rounded transition-custom" title="加粗">
-              <i class="fa fa-bold"></i>
-            </button>
-            <button class="p-2 text-muted hover:text-primary hover:bg-white rounded transition-custom" title="斜体">
-              <i class="fa fa-italic"></i>
-            </button>
-            <button class="p-2 text-muted hover:text-primary hover:bg-white rounded transition-custom" title="下划线">
-              <i class="fa fa-underline"></i>
-            </button>
-            <span class="h-6 border-r border-gray-200 mx-1"></span>
-            <button class="p-2 text-muted hover:text-primary hover:bg-white rounded transition-custom" title="无序列表">
-              <i class="fa fa-list-ul"></i>
-            </button>
-            <button class="p-2 text-muted hover:text-primary hover:bg-white rounded transition-custom" title="有序列表">
-              <i class="fa fa-list-ol"></i>
-            </button>
-            <button class="p-2 text-muted hover:text-primary hover:bg-white rounded transition-custom" title="引用">
-              <i class="fa fa-quote-right"></i>
-            </button>
-            <span class="h-6 border-r border-gray-200 mx-1"></span>
-            <button class="p-2 text-muted hover:text-primary hover:bg-white rounded transition-custom" title="插入链接">
-              <i class="fa fa-link"></i>
-            </button>
-            <button class="p-2 text-muted hover:text-primary hover:bg-white rounded transition-custom" title="插入图片">
-              <i class="fa fa-image"></i>
-            </button>
-            <button class="p-2 text-muted hover:text-primary hover:bg-white rounded transition-custom" title="插入代码">
-              <i class="fa fa-code"></i>
-            </button>
-            <span class="h-6 border-r border-gray-200 mx-1"></span>
-            <button class="p-2 text-muted hover:text-primary hover:bg-white rounded transition-custom" title="撤销">
-              <i class="fa fa-undo"></i>
-            </button>
-            <button class="p-2 text-muted hover:text-primary hover:bg-white rounded transition-custom" title="重做">
-              <i class="fa fa-repeat"></i>
-            </button>
-          </div>
-          
-          <!-- 编辑器内容区 -->
-          <div class="border border-gray-200 border-t-0 rounded-b-lg p-6 min-h-[400px]">
-            <div contenteditable="true" class="outline-none min-h-[400px]" placeholder="开始撰写你的文章内容..."></div>
-          </div>
-          
-          <!-- 文章设置 -->
-          <div class="mt-8 pt-6 border-t border-gray-100">
-            <h3 class="text-lg font-medium text-dark mb-4">文章设置</h3>
-            
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <!-- 分类选择 -->
-              <div>
-                <label class="block text-sm font-medium text-dark mb-2">文章分类</label>
-                <select class="w-full px-4 py-3 rounded-lg border border-gray-200 focus:outline-none editor-focus transition-custom">
-                  <option value="">请选择分类</option>
-                  <option value="frontend">前端开发</option>
-                  <option value="backend">后端开发</option>
-                  <option value="devops">DevOps</option>
-                  <option value="database">数据库</option>
-                  <option value="life">生活随笔</option>
-                </select>
-                <div class="mt-2 text-sm text-muted">
-                  <a href="#categories" class="text-primary hover:underline">+ 添加新分类</a>
-                </div>
-              </div>
-              
-              <!-- 标签 -->
-              <div>
-                <label class="block text-sm font-medium text-dark mb-2">文章标签</label>
-                <input type="text" placeholder="输入标签，用逗号分隔" class="w-full px-4 py-3 rounded-lg border border-gray-200 focus:outline-none editor-focus transition-custom">
-                <div class="mt-2 flex flex-wrap gap-2">
-                  <span class="inline-flex items-center px-2 py-1 bg-light text-sm rounded-full">
-                    JavaScript <button class="ml-1 text-muted hover:text-dark"><i class="fa fa-times-circle"></i></button>
-                  </span>
-                  <span class="inline-flex items-center px-2 py-1 bg-light text-sm rounded-full">
-                    前端 <button class="ml-1 text-muted hover:text-dark"><i class="fa fa-times-circle"></i></button>
-                  </span>
-                </div>
-              </div>
-              
-              <!-- 特色图片 -->
-              <div>
-                <label class="block text-sm font-medium text-dark mb-2">特色图片</label>
-                <div class="border-2 border-dashed border-gray-200 rounded-lg p-6 text-center hover:border-primary transition-custom cursor-pointer">
-                  <input type="file" class="hidden" id="featured-image">
-                  <label for="featured-image" class="cursor-pointer">
-                    <i class="fa fa-cloud-upload text-2xl text-muted mb-2"></i>
-                    <p class="text-sm text-muted">点击上传或拖拽图片到此处</p>
-                    <p class="text-xs text-muted mt-1">支持 JPG, PNG, GIF 格式，建议尺寸 1200×630</p>
-                  </label>
-                </div>
-              </div>
-              
-              <!-- 发布设置 -->
-              <div>
-                <label class="block text-sm font-medium text-dark mb-2">发布设置</label>
-                <div class="space-y-3">
-                  <div class="flex items-center">
-                    <input type="radio" id="publish-now" name="publish-status" checked class="mr-2">
-                    <label for="publish-now" class="text-sm">立即发布</label>
-                  </div>
-                  <div class="flex items-center">
-                    <input type="radio" id="save-draft" name="publish-status" class="mr-2">
-                    <label for="save-draft" class="text-sm">保存为草稿</label>
-                  </div>
-                  <div class="flex items-center">
-                    <input type="radio" id="schedule" name="publish-status" class="mr-2">
-                    <label for="schedule" class="text-sm">定时发布</label>
-                  </div>
-                  <div class="ml-6 mt-1">
-                    <input type="datetime-local" class="w-full px-3 py-2 text-sm rounded-lg border border-gray-200 focus:outline-none editor-focus transition-custom">
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          
-          <!-- 操作按钮 -->
-          <div class="mt-8 flex justify-end space-x-3">
-            <button class="px-5 py-2.5 border border-gray-200 rounded-lg text-sm font-medium hover:bg-light transition-custom">
-              <i class="fa fa-eye mr-1"></i> 预览文章
-            </button>
-            <button class="px-5 py-2.5 border border-gray-200 rounded-lg text-sm font-medium hover:bg-light transition-custom">
-              <i class="fa fa-save mr-1"></i> 保存草稿
-            </button>
-            <button class="px-5 py-2.5 bg-primary text-white rounded-lg text-sm font-medium hover:bg-primary/90 transition-custom">
-              <i class="fa fa-paper-plane mr-1"></i> 发布文章
-            </button>
-          </div>
-        </section>
-        
-        <!-- 草稿箱 -->
-        <section class="bg-white rounded-xl shadow-sm p-6">
-          <div class="flex justify-between items-center mb-6">
-            <h2 class="text-xl font-bold text-dark">最近草稿</h2>
-            <a href="#drafts" class="text-primary text-sm font-medium hover:underline">查看全部</a>
-          </div>
-          
-          <div class="overflow-x-auto">
-            <table class="min-w-full divide-y divide-gray-200">
-              <thead>
-                <tr>
-                  <th class="px-4 py-3 text-left text-xs font-medium text-muted uppercase tracking-wider">标题</th>
-                  <th class="px-4 py-3 text-left text-xs font-medium text-muted uppercase tracking-wider">最后编辑</th>
-                  <th class="px-4 py-3 text-right text-xs font-medium text-muted uppercase tracking-wider">操作</th>
-                </tr>
-              </thead>
-              <tbody class="divide-y divide-gray-100">
-                <tr class="hover:bg-gray-50 transition-custom">
-                  <td class="px-4 py-4">
-                    <div class="text-sm font-medium text-dark">React Hooks 完全指南</div>
-                  </td>
-                  <td class="px-4 py-4">
-                    <div class="text-sm text-muted">今天 14:35</div>
-                  </td>
-                  <td class="px-4 py-4 text-right text-sm">
-                    <a href="#" class="text-primary hover:underline mr-3">编辑</a>
-                    <a href="#" class="text-green-600 hover:underline mr-3">发布</a>
-                    <a href="#" class="text-red-500 hover:underline">删除</a>
-                  </td>
-                </tr>
-                <tr class="hover:bg-gray-50 transition-custom">
-                  <td class="px-4 py-4">
-                    <div class="text-sm font-medium text-dark">Docker 容器编排实战</div>
-                  </td>
-                  <td class="px-4 py-4">
-                    <div class="text-sm text-muted">昨天 09:12</div>
-                  </td>
-                  <td class="px-4 py-4 text-right text-sm">
-                    <a href="#" class="text-primary hover:underline mr-3">编辑</a>
-                    <a href="#" class="text-green-600 hover:underline mr-3">发布</a>
-                    <a href="#" class="text-red-500 hover:underline">删除</a>
-                  </td>
-                </tr>
-                <tr class="hover:bg-gray-50 transition-custom">
-                  <td class="px-4 py-4">
-                    <div class="text-sm font-medium text-dark">2023年开发工具推荐</div>
-                  </td>
-                  <td class="px-4 py-4">
-                    <div class="text-sm text-muted">2023-06-10 16:48</div>
-                  </td>
-                  <td class="px-4 py-4 text-right text-sm">
-                    <a href="#" class="text-primary hover:underline mr-3">编辑</a>
-                    <a href="#" class="text-green-600 hover:underline mr-3">发布</a>
-                    <a href="#" class="text-red-500 hover:underline">删除</a>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </section>
-      </div>
-    </div>
-  </main>
-
-  <!-- 页脚 -->
-  <footer class="bg-white border-t border-gray-200 py-6 mt-12">
-    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="flex flex-col md:flex-row justify-between items-center">
-        <p class="text-sm text-muted">© 2023 goeontae的博客管理平台. 保留所有权利.</p>
-        <div class="flex space-x-6 mt-4 md:mt-0">
-          <a href="#" class="text-sm text-muted hover:text-primary transition-custom">使用帮助</a>
-          <a href="#" class="text-sm text-muted hover:text-primary transition-custom">隐私政策</a>
-          <a href="#" class="text-sm text-muted hover:text-primary transition-custom">联系我们</a>
-        </div>
-      </div>
-    </div>
-  </footer>
-
-  <!-- 图片上传模态框 (默认隐藏) -->
-  <div id="image-modal" class="fixed inset-0 bg-black/50 z-50 hidden items-center justify-center">
-    <div class="bg-white rounded-xl w-full max-w-2xl max-h-[90vh] overflow-hidden flex flex-col">
-      <div class="p-4 border-b border-gray-100 flex justify-between items-center">
-        <h3 class="font-bold">上传图片</h3>
-        <button id="close-modal" class="text-muted hover:text-dark transition-custom">
-          <i class="fa fa-times"></i>
-        </button>
-      </div>
-      <div class="p-6 overflow-y-auto flex-1">
-        <div class="border-2 border-dashed border-gray-200 rounded-lg p-8 text-center mb-6 hover:border-primary transition-custom">
-          <i class="fa fa-cloud-upload text-3xl text-muted mb-3"></i>
-          <p class="text-sm text-muted mb-4">拖拽图片到此处或点击上传</p>
-          <button class="px-4 py-2 bg-primary text-white rounded-lg text-sm font-medium hover:bg-primary/90 transition-custom">
-            选择图片
-          </button>
-          <p class="text-xs text-muted mt-3">支持 JPG, PNG, GIF 格式，单张不超过10MB</p>
-        </div>
-        
-        <h4 class="font-medium mb-3">最近上传</h4>
-        <div class="grid grid-cols-4 gap-3">
-          <div class="aspect-square rounded-lg overflow-hidden border border-gray-200 hover:border-primary transition-custom cursor-pointer relative group">
-            <img src="https://picsum.photos/id/20/200/200" alt="图片预览" class="w-full h-full object-cover">
-            <div class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-custom flex items-center justify-center">
-              <i class="fa fa-check text-white"></i>
-            </div>
-          </div>
-          <div class="aspect-square rounded-lg overflow-hidden border border-gray-200 hover:border-primary transition-custom cursor-pointer relative group">
-            <img src="https://picsum.photos/id/21/200/200" alt="图片预览" class="w-full h-full object-cover">
-            <div class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-custom flex items-center justify-center">
-              <i class="fa fa-check text-white"></i>
-            </div>
-          </div>
-          <div class="aspect-square rounded-lg overflow-hidden border border-gray-200 hover:border-primary transition-custom cursor-pointer relative group">
-            <img src="https://picsum.photos/id/22/200/200" alt="图片预览" class="w-full h-full object-cover">
-            <div class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-custom flex items-center justify-center">
-              <i class="fa fa-check text-white"></i>
-            </div>
-          </div>
-          <div class="aspect-square rounded-lg overflow-hidden border border-gray-200 hover:border-primary transition-custom cursor-pointer relative group">
-            <img src="https://picsum.photos/id/23/200/200" alt="图片预览" class="w-full h-full object-cover">
-            <div class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-custom flex items-center justify-center">
-              <i class="fa fa-check text-white"></i>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="p-4 border-t border-gray-100 flex justify-end space-x-3">
-        <button id="cancel-upload" class="px-4 py-2 border border-gray-200 rounded-lg text-sm font-medium hover:bg-light transition-custom">
-          取消
-        </button>
-        <button class="px-4 py-2 bg-primary text-white rounded-lg text-sm font-medium hover:bg-primary/90 transition-custom">
-          插入图片
-        </button>
-      </div>
-    </div>
+<body>
+  <div id="header">
+      <div class="gohome radius20"><a href="#"><img src="images/icons/home.png" alt="" title="" /></a></div>
+      <div class="gomenu radius20"><a href="#" onclick="swiperParent.swipeTo(10);"><img src="images/icons/contact.png" alt="" title="" /></a></div>
   </div>
+  <div class="swiper-container swiper-parent">
+    <div class="swiper-wrapper">
+    
+      <!--Menu page-->
+      <div class="swiper-slide sliderbg_menu">
+          <div class="swiper-container swiper-nested">
+                   <div class="swiper-wrapper">
+                        <div class="swiper-slide">
+                                  <div class="slide-inner">
+                                        <div class="logo"><a href="#"><img src="colors/wedding/images/logo.png" alt="" title="" border="0" /><span>John &amp; Melissa</span></a></div>
+                                        <div class="menu">
+                                        <ul>
+                                        <li><a href="#" onclick="swiperParent.swipeTo(1);"><img src="images/icons/about.png" alt="" title="" /><span>About Us</span></a></li>
+                                        <li><a href="#" onclick="swiperParent.swipeTo(2);"><img src="images/icons/tools.png" alt="" title="" /><span>Services</span></a></li>
+                                        <li><a href="#" onclick="swiperParent.swipeTo(3);"><img src="images/icons/blog.png" alt="" title="" /><span>Blog</span></a></li>
+                                        <li><a href="#" onclick="swiperParent.swipeTo(5);"><img src="images/icons/docs.png" alt="" title="" /><span>Portfolio</span></a></li>
+                                        <li><a href="#" onclick="swiperParent.swipeTo(6);"><img src="images/icons/photos.png" alt="" title="" /><span>Gallery</span></a></li>
+                                        <li><a href="#" onclick="swiperParent.swipeTo(7);"><img src="images/icons/videos.png" alt="" title="" /><span>Videos</span></a></li>
+                                        <li><a href="#" onclick="swiperParent.swipeTo(8);"><img src="images/icons/clients.png" alt="" title="" /><span>Clients</span></a></li>
+                                        <li><a href="#" onclick="swiperParent.swipeTo(9);"><img src="images/icons/twitter.png" alt="" title="" /><span>Twitter</span></a></li>
+                                        <li><a href="#" onclick="swiperParent.swipeTo(10);"><img src="images/icons/contact.png" alt="" title="" /><span>Contact</span></a></li>
+                                        </ul>
+                                        <div class="clearfix"></div>
+                                        </div>
+                                 </div>
+                         </div>
+                   </div>
+                  <div class="swiper-scrollbar"></div>
+          </div> 
+      </div>
+      
+      <!--Page 1 content-->
+      <div class="swiper-slide sliderbg">
+      <div class="swiper-container swiper-nested1">
+               <div class="swiper-wrapper">
+                    <div class="swiper-slide">
+                              <div class="slide-inner">
+                                        <div class="pages_container">
+                                        <h2 class="page_title">About Us</h2>
+                                        <div class="image_single radius4"><img src="images/page_photo.jpg" alt="" title="" border="0" /></div>
+                                        <div class="image_caption red red_borderbottom radius4">Image title</div>
+                                        <h3>Imagination is our power</h3>
+                                        <blockquote>Design is the fundamental soul of a human-made creation that ends up expressing itself in successive outer layers of the product or service. <span class="quote_author">-Steve Jobs</span></blockquote>
+                                        
+                                        <h3>Just a simple listing</h3>
+                                        <ul class="listing">
+                                        <li>Proin dignissim risus ut quam aliquam dignissim.</li>
+                                        <li>Nunc erat eros, cursus et commodo vitae, pulvinar ac libero.</li>
+                                        <li>In erat elit, bibendum vitae commodo vitae, bibendum non justo.</li>
+                                        </ul>
+                                        <h3>A more detailed listing</h3>
+                                        <ul class="listing_detailed">
+                                        <li><a href="#">Proin dignissim risus</a></li>
+                                        <li><a href="#">Nunc erat eros, cursus et</a></li>
+                                        <li><a href="#">In erat elit, bibendum</a></li>
+                                        </ul>
+                                        
+                                        <h2>Toggle styles</h2>
+        
+                                        <div class="toogle_wrap radius8">
+                                            <div class="trigger"><a href="#">toggle with text</a></div>
+                                
+                                            <div class="toggle_container">
+                                            <p>
+                                        Lorem ipsum <a href="#">dolor sit amet</a>, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                                            </p>
+                                            </div>
+                                        </div>
+        
+                                        <div class="toogle_wrap radius8">
+                                            <div class="trigger"><a href="#">toggle with lists</a></div>
+                                
+                                            <div class="toggle_container">
+                                            <ul class="listing_detailed">
+                                            <li>Consectetur adipisicing elit sed</li>
+                                            <li>Sed do eiusmod tempor incididunt</li>
+                                            <li>Ut enim ad minim veniam</li>
+                                            </ul>
+                                            </div>
+                                        </div> 
+        
+                                        <h2>Some flexible <span class="tag">tabs</span></h2>
+                                        
+                                        <ul id="tabsmenu" class="tabsmenu">
+                                            <li class="active"><a href="#tab1">Text tab</a></li>
+                                            <li><a href="#tab2">Listing tab</a></li>
+                                            <li><a href="#tab3">Quote tab</a></li>
+                                        </ul>
+                                        <div id="tab1" class="tabcontent">
+                                            <h4>Simple text title</h4>
+                                            <p>
+                                        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                                            </p>
+                                        </div>
+                                        <div id="tab2" class="tabcontent">
+                                            <h4>Listing title</h4>
+                                            <ul class="listing">
+                                            <li>Consectetur adipisicing elit sed</li>
+                                            <li>Sed do eiusmod tempor incididunt</li>
+                                            <li>Ut enim ad minim veniam</li>
+                                            </ul>
+                                        </div>
+                                
+                                        <div id="tab3" class="tabcontent">
+                                            <h4>Quote title</h4>
+                                            <blockquote>Design is the fundamental soul of a human-made creation that ends up expressing itself in successive outer layers of the product or service. <span class="quote_author">-Steve Jobs</span></blockquote>
+                                        </div>       
+                                        
+                                        <h2>Some buttons styles</h2>
+                                        <a href="#" class="button_12 green green_borderbottom radius4">Button 1/2</a>  <a href="#" class="button_12 blue blue_borderbottom radius4">Button 1/2</a>
+                                        <a href="#" class="button_12 red red_borderbottom radius4">Button 1/2</a>  <a href="#" class="button_12 orange orange_borderbottom radius4">Button 1/2</a> 
+                                        <a href="#" class="button_12 black black_borderbottom radius4">Button 1/2</a>  <a href="#" class="button_12 gray gray_borderbottom radius4">Button 1/2</a>  
+                                        <a href="#" class="button_11 bluegreen bluegreen_borderbottom radius4">Full width button</a>
+                                        
+                                        <div class="clearfix"></div>
+      									<div class="scrolltop radius20"><a href="#" class="scrolltop1"><img src="images/icons/top.png" alt="Go on top" title="Go on top" /></a></div>
+                                        </div>
+                                        <!--End of page container-->
+                              </div>
+                    </div>
+              </div>
+              <div class="swiper-scrollbar1"></div>
+     </div>
+     </div>
+      
+      <!--Page 2 content-->
+      <div class="swiper-slide sliderbg">
+      <div class="swiper-container swiper-nested2">
+               <div class="swiper-wrapper">
+                    <div class="swiper-slide">
+                              <div class="slide-inner">
+                                        <div class="pages_container">
+                                        <h2 class="page_title">Our motto</h2>
+                                        <blockquote>Design is the fundamental soul of a human-made creation that ends up expressing itself in successive outer layers of the product or service. <span class="quote_author">-Steve Jobs</span></blockquote>
+                                        
+                                        <h3>Our main services</h3>
+                                        <div class="service_box">
+                                          <div class="services_icon"><img src="images/icons/services.png" alt="" title="" /></div>
+                                          <div class="service_content">
+                                          <h4>Web development</h4>
+                                              <p>Lorem ipsum dolor sit <a href="#">amet consectetur</a> adipisicing elit, <strong>sed do eiusmod</strong> tempor</p>
+                                          </div>
+                                        </div>
+                                        <div class="service_box">
+                                          <div class="services_icon"><img src="images/icons/layout.png" alt="" title="" /></div>
+                                          <div class="service_content">
+                                          <h4>Layout design</h4>
+                                          <p>Cras <strong>vestibulum</strong> <a href="#">justo eget lorem</a> semper ac facilisis nulla porta</p>
+                                          </div>
+                                        </div>  
+                                        <div class="service_box">
+                                          <div class="services_icon"><img src="images/icons/pencil.png" alt="" title="" /></div>
+                                          <div class="service_content">
+                                          <h4>Drawing</h4>
+                                          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor</p>
+                                          </div>
+                                        </div>
+                                        <div class="service_box">
+                                          <div class="services_icon"><img src="images/icons/code.png" alt="" title="" /></div>
+                                          <div class="service_content">
+                                          <h4>Programming</h4>
+                                          <p>Lorem ipsum dolor sit amet, <a href="#"><strong>consectetur adipisicing elit</strong></a>, sed do eiusmod tempor</p>
+                                          </div>
+                                        </div>                                     
+                                        <div class="service_box">
+                                          <div class="services_icon"><img src="images/icons/travel.png" alt="" title="" /></div>
+                                          <div class="service_content">
+                                          <h4>Custom work</h4>
+                                          <p>Lorem ipsum dolor sit <a href="#">amet consectetur</a> adipisicing elit, <strong>sed do eiusmod</strong> tempor</p>
+                                          </div>
+                                        </div>
+                                        <div class="service_box">
+                                          <div class="services_icon"><img src="images/icons/security.png" alt="" title="" /></div>
+                                          <div class="service_content">
+                                          <h4>Security</h4>
+                                          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor</p>
+                                          </div>
+                                        </div>
+                                        
+                                        <h3>Prices</h3>
+                                        
+                                        <ul class="responsive_table">
+                                             <li class="table_row">
+                                                <div class="table_section_small">Nr</div>
+                                                <div class="table_section">Service</div>
+                                                <div class="table_section">Price</div> 
+                                             </li>
+                                             <li class="table_row">
+                                                <div class="table_section_small">01</div>
+                                                <div class="table_section">Web development</div>
+                                                <div class="table_section">1200$</div> 
+                                             </li>
+                                             <li class="table_row">
+                                                <div class="table_section_small">02</div>
+                                                <div class="table_section">Drawing</div>
+                                                <div class="table_section">600$</div> 
+                                             </li>
+                                             <li class="table_row">
+                                                <div class="table_section_small">03</div>
+                                                <div class="table_section">Custom work</div>
+                                                <div class="table_section">500$</div> 
+                                             </li>
+                                             <li class="table_row">
+                                                <div class="table_section_small">04</div>
+                                                <div class="table_section">Layout design</div>
+                                                <div class="table_section">800$</div> 
+                                             </li>
+                                             <li class="table_row">
+                                                <div class="table_section_small">05</div>
+                                                <div class="table_section">Security</div>
+                                                <div class="table_section">650$</div> 
+                                             </li>
+                                        </ul>
+                                        
+                                        <div class="clearfix"></div>
+      <div class="scrolltop radius20"><a href="#" class="scrolltop2"><img src="images/icons/top.png" alt="Go on top" title="Go on top" /></a></div>
+                                        </div>
+                                        <!--End of page container-->
+                              </div>
+                    </div>
+              </div>
+              <div class="swiper-scrollbar2"></div>
+     </div>
+     </div>
+     
+      <!--Page 3 content-->
+      <div class="swiper-slide sliderbg">
+      <div class="swiper-container swiper-nested3">
+               <div class="swiper-wrapper">
+                    <div class="swiper-slide">
+                              <div class="slide-inner">
+                                        <div class="pages_container blogheight">
+                                        <h2 class="page_title">Blog</h2>
+                                                <div class="toogle_wrap_blog radius8">
+                                                    <div class="trigger_blog"><a href="#">blog categories</a></div>
+                                                        <div class="toggle_container_blog">
+                                                            <ul class="listing_detailed">
+                                                            <li><a href="#">webdesign work</a></li>
+                                                            <li><a href="#">painted illustrations</a></li>
+                                                            <li><a href="#">programming and javascript</a></li>
+                                                            </ul>
+                                                        </div>
+                                                </div>
+                                                <ul class="posts">
+                                                <li class="post">
+                                                     <a href="#" class="post_more"></a>                     
+                                                     <div class="post_right_reveal">
+                                                     <h4><a href="#" onclick="swiperParent.swipeTo(4);">Lorem ipsum dolor sit amet, consectetur adipiscing elit...</a></h4>
+                                                     </div>
+                                                     <div class="post_right_unreveal">
+                                                     Posted in <a href="#">blog category</a>
+                                                     <span class="post_comments">25 Comments</span>
+                                                     <a href="#" class="post_readmore" onclick="swiperParent.swipeTo(4);">read more</a>
+                                                     </div> 
 
-  <script>
-    // 侧边栏导航激活状态切换
-    document.querySelectorAll('aside nav a').forEach(link => {
-      link.addEventListener('click', function(e) {
-        // 移除所有激活状态
-        document.querySelectorAll('aside nav a').forEach(item => {
-          item.classList.remove('text-primary', 'bg-primary/5', 'font-medium');
-          item.classList.add('text-dark', 'hover:bg-light');
-        });
-        
-        // 添加当前激活状态
-        this.classList.remove('text-dark', 'hover:bg-light');
-        this.classList.add('text-primary', 'bg-primary/5', 'font-medium');
-      });
-    });
-    
-    // 图片上传模态框控制
-    const imageModal = document.getElementById('image-modal');
-    const closeModal = document.getElementById('close-modal');
-    const cancelUpload = document.getElementById('cancel-upload');
-    const insertImageBtn = document.querySelector('.fa-image').parentElement;
-    
-    // 打开模态框
-    insertImageBtn.addEventListener('click', () => {
-      imageModal.classList.remove('hidden');
-      imageModal.classList.add('flex');
-      document.body.style.overflow = 'hidden';
-    });
-    
-    // 关闭模态框
-    function closeImageModal() {
-      imageModal.classList.add('hidden');
-      imageModal.classList.remove('flex');
-      document.body.style.overflow = '';
-    }
-    
-    closeModal.addEventListener('click', closeImageModal);
-    cancelUpload.addEventListener('click', closeImageModal);
-    
-    // 点击模态框外部关闭
-    imageModal.addEventListener('click', (e) => {
-      if (e.target === imageModal) {
-        closeImageModal();
-      }
-    });
-    
-    // 编辑器工具栏按钮效果
-    document.querySelectorAll('.fa-bold, .fa-italic, .fa-underline, .fa-list-ul, .fa-list-ol, .fa-quote-right, .fa-link, .fa-code, .fa-undo, .fa-repeat').forEach(btn => {
-      btn.parentElement.addEventListener('click', function() {
-        // 模拟按钮点击效果
-        this.classList.add('bg-white');
-        setTimeout(() => {
-          this.classList.remove('bg-white');
-        }, 200);
-      });
-    });
-    
-    // 平滑滚动
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-      anchor.addEventListener('click', function(e) {
-        e.preventDefault();
-        
-        const targetId = this.getAttribute('href');
-        if (targetId === '#') return;
-        
-        const targetElement = document.querySelector(targetId);
-        if (targetElement) {
-          window.scrollTo({
-            top: targetElement.offsetTop - 80,
-            behavior: 'smooth'
-          });
-        }
-      });
-    });
-  </script>
+                                                    <div class="post_left">
+                                                        <span class="day">23</span>
+                                                        <span class="month">june</span>
+                                                    </div>
+
+                                                </li>
+                                                <li class="post">
+                                                     <a href="#" class="post_more"></a>
+                                                     <div class="post_right_reveal">
+                                                     <h4><a href="#" onclick="swiperParent.swipeTo(4);">Cras vestibulum justo eget lorem semper ac facilisis nulla porta...</a></h4>
+                                                     </div>
+                                                     <div class="post_right_unreveal">
+                                                     Posted in <a href="#">programming</a>
+                                                     <span class="post_comments">18 Comments</span>
+                                                     <a href="#" class="post_readmore" onclick="swiperParent.swipeTo(4);">read more</a>
+                                                     </div> 
+                                                   
+                                                    <div class="post_left">
+                                                        <span class="day">18</span>
+                                                        <span class="month">sept</span>
+                                                    </div>
+                                                </li>
+                                                <li class="post">
+                                                     <a href="#" class="post_more"></a>                     
+                                                     <div class="post_right_reveal">
+                                                     <h4><a href="#" onclick="swiperParent.swipeTo(4);">Nam velit sapien, eleifend in tempus volutpat, posuere ullamcorper augue...</a></h4>
+                                                     </div>
+                                                     <div class="post_right_unreveal">
+                                                     Posted in <a href="#">blog category</a>
+                                                     <span class="post_comments">11 Comments</span>
+                                                     <a href="#" class="post_readmore" onclick="swiperParent.swipeTo(4);">read more</a>
+                                                     </div> 
+
+                                                    <div class="post_left">
+                                                        <span class="day">09</span>
+                                                        <span class="month">dec</span>
+                                                    </div>
+
+                                                </li>
+                                                <li class="post">
+                                                     <a href="#" class="post_more"></a>
+                                                     <div class="post_right_reveal">
+                                                     <h4><a href="#" onclick="swiperParent.swipeTo(4);">Cras vestibulum justo eget lorem semper ac facilisis nulla porta...</a></h4>
+                                                     </div>
+                                                     <div class="post_right_unreveal">
+                                                     Posted in <a href="#">programming</a>
+                                                     <span class="post_comments">06 Comments</span>
+                                                     <a href="#" class="post_readmore" onclick="swiperParent.swipeTo(4);">read more</a>
+                                                     </div> 
+                                                   
+                                                    <div class="post_left">
+                                                        <span class="day">12</span>
+                                                        <span class="month">mart</span>
+                                                    </div>
+                                                </li>
+                                                <li class="post">
+                                                     <a href="#" class="post_more"></a>
+                                                     <div class="post_right_reveal">
+                                                     <h4><a href="#" onclick="swiperParent.swipeTo(4);">Cras vestibulum justo eget lorem semper ac facilisis nulla porta...</a></h4>
+                                                     </div>
+                                                     <div class="post_right_unreveal">
+                                                     Posted in <a href="#">programming</a>
+                                                     <span class="post_comments">18 Comments</span>
+                                                     <a href="#" class="post_readmore" onclick="swiperParent.swipeTo(4);">read more</a>
+                                                     </div> 
+                                                   
+                                                    <div class="post_left">
+                                                        <span class="day">18</span>
+                                                        <span class="month">sept</span>
+                                                    </div>
+                                                </li>
+                                                <li class="post">
+                                                     <a href="#" class="post_more"></a>                     
+                                                     <div class="post_right_reveal">
+                                                     <h4><a href="#" onclick="swiperParent.swipeTo(4);">Nam velit sapien, eleifend in tempus volutpat, posuere ullamcorper augue...</a></h4>
+                                                     </div>
+                                                     <div class="post_right_unreveal">
+                                                     Posted in <a href="#">blog category</a>
+                                                     <span class="post_comments">11 Comments</span>
+                                                     <a href="#" class="post_readmore" onclick="swiperParent.swipeTo(4);">read more</a>
+                                                     </div> 
+
+                                                    <div class="post_left">
+                                                        <span class="day">09</span>
+                                                        <span class="month">dec</span>
+                                                    </div>
+
+                                                </li>
+                                                <li class="post">
+                                                     <a href="#" class="post_more"></a>
+                                                     <div class="post_right_reveal">
+                                                     <h4><a href="#" onclick="swiperParent.swipeTo(4);">Cras vestibulum justo eget lorem semper ac facilisis nulla porta...</a></h4>
+                                                     </div>
+                                                     <div class="post_right_unreveal">
+                                                     Posted in <a href="#">programming</a>
+                                                     <span class="post_comments">18 Comments</span>
+                                                     <a href="#" class="post_readmore" onclick="swiperParent.swipeTo(4);">read more</a>
+                                                     </div> 
+                                                   
+                                                    <div class="post_left">
+                                                        <span class="day">18</span>
+                                                        <span class="month">sept</span>
+                                                    </div>
+                                                </li>
+                                                <li class="post">
+                                                     <a href="#" class="post_more"></a>                     
+                                                     <div class="post_right_reveal">
+                                                     <h4><a href="#" onclick="swiperParent.swipeTo(4);">Nam velit sapien, eleifend in tempus volutpat, posuere ullamcorper augue...</a></h4>
+                                                     </div>
+                                                     <div class="post_right_unreveal">
+                                                     Posted in <a href="#">blog category</a>
+                                                     <span class="post_comments">11 Comments</span>
+                                                     <a href="#" class="post_readmore" onclick="swiperParent.swipeTo(4);">read more</a>
+                                                     </div> 
+
+                                                    <div class="post_left">
+                                                        <span class="day">09</span>
+                                                        <span class="month">dec</span>
+                                                    </div>
+
+                                                </li>
+                                                </ul>
+                                                <div id="loadMore" class="radius8">Load more posts</div> 
+                                                <div id="showLess" class="radius8">No more posts</div>
+ 										<div class="scrolltop radius20"><a href="#" class="scrolltop3"><img src="images/icons/top.png" alt="Go on top" title="Go on top" /></a></div>
+                                        </div>
+                                        <!--End of page container-->
+                              </div>
+                    </div>
+              </div>
+              <div class="swiper-scrollbar3"></div>
+     </div>
+     </div>
+     
+      <div class="swiper-slide sliderbg">
+      <div class="swiper-container swiper-nestedsingle">
+               <div class="swiper-wrapper">
+                    <div class="swiper-slide">
+                              <div class="slide-inner">
+                              <div class="pages_container">
+                              <a class="backtoblog radius8" onclick="swiperParent.swipeTo(3);">back to blog</a>
+                              <h2 class="page_title">Blog single page</h2>
+                            <div class="image_single radius4"><img src="images/page_photo.jpg" alt="" title="" border="0" /></div>
+                            <div class="image_caption green green_borderbottom radius4">Image title</div>
+                            <h3>Imagination is our power</h3>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam velit sapien, eleifend in tempus volutpat, posuere ullamcorper augue. Proin dignissim risus ut quam aliquam dignissim. In erat elit, bibendum vitae commodo vitae, bibendum non justo.<br /><br /> Nunc erat eros, cursus et commodo vitae, pulvinar ac libero. Nullam et scelerisque erat. Cras vestibulum justo eget lorem semper ac facilisis nulla porta.</p>
+                            <h3>Comments</h3>
+                                <div class="comment_row">
+                                	<div class="comm_avatar"><img src="images/avatar.jpg" alt="" title="" border="0" /></div>
+                                    <div class="comm_content"><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam velit sapien, eleifend in by <a href="#">comment author</a></p></div>
+                                </div>
+                                <div class="comment_row">
+                                	<div class="comm_avatar"><img src="images/avatar.jpg" alt="" title="" border="0" /></div>
+                                    <div class="comm_content"><p>Nullam et scelerisque erat. Cras vestibulum justo eget lorem semper ac facilisis nulla porta by <a href="#">comment author</a></p></div>
+                                </div>
+                            <h3>Leave a comment</h3>
+                                <div class="form">
+                                <form action="">
+                                <label>Name:</label>
+                                <input type="text" class="form_input radius4" />
+                                <label>Email:</label>
+                                <input type="text" class="form_input radius4" />
+                                <label>Comment:</label>
+                                <textarea class="form_textarea radius4" rows="" cols=""></textarea>
+                                
+                                <input type="submit" class="form_submit radius4 green green_borderbottom" value="Submit" />
+                                </form>
+                                </div>
+                              <div class="scrolltop radius20"><a href="#" class="scrolltopsingle"><img src="images/icons/top.png" alt="Go on top" title="Go on top" /></a></div>
+                              </div>
+                              <!--End of page container-->
+                               </div>
+                         </div>
+                   </div>
+                  <div class="swiper-scrollbarsingle"></div>
+          </div>                            
+      </div>
+     <!--Page 4 content-->
+      <div class="swiper-slide sliderbg">
+      <div class="swiper-container swiper-nested4">
+               <div class="swiper-wrapper">
+                    <div class="swiper-slide">
+                              <div class="slide-inner">
+                                        <div class="pages_container">
+                                        <h2 class="page_title">Portfolio</h2>
+                                        <div class="toogle_wrap radius8">
+                                            <div class="trigger"><a href="#">portfolio categories</a></div>
+                                            <div class="toggle_container">
+                                            <ul class="listing_detailed">
+                                            <li><a href="#">webdesign work</a></li>
+                                            <li><a href="#">painted illustrations</a></li>
+                                            <li><a href="#">programming and javascript</a></li>
+                                            </ul>
+                                            </div>
+                                        </div>
+                                        <div class="portfolio_item radius8">
+                                             <div class="portfolio_image"><a rel="gallery-1" href="images/portfolio_thumb.jpg" class="swipebox" title="Webdesign work"><img src="images/portfolio_thumb.jpg" alt="" title="" border="0" /></a></div>
+                                                 <div class="portfolio_details">
+                                                 <h4>Webdesign work</h4>
+                                                 <p>Nullam et scelerisque erat. Cras vestibulum justo...</p>
+                                                 <a rel="gallery-2" href="images/portfolio_thumb.jpg" class="swipebox view_details" title="Webdesign work">view details</a>
+                                                 </div>
+                                        </div>
+                                        <div class="portfolio_item radius8">
+                                             <div class="portfolio_image"><a rel="gallery-1" href="images/portfolio_thumb2.jpg" class="swipebox" title="Webdesign work"><img src="images/portfolio_thumb2.jpg" alt="" title="" border="0" /></a></div>
+                                                 <div class="portfolio_details">
+                                                 <h4>Mobile development</h4>
+                                                 <p>Cras vestibulum justo eget lorem semper ac facilisis...</p>
+                                                 <a rel="gallery-2" href="images/portfolio_thumb2.jpg" class="swipebox view_details" title="Webdesign work">view details</a>
+                                                 </div>
+                                        </div>
+                                        <div class="portfolio_item radius8">
+                                             <div class="portfolio_image"><a rel="gallery-1" href="images/portfolio_thumb3.jpg" class="swipebox" title="Webdesign work"><img src="images/portfolio_thumb3.jpg" alt="" title="" border="0" /></a></div>
+                                                 <div class="portfolio_details">
+                                                 <h4>Applications</h4>
+                                                 <p>Sed ut felis non arcu pulvinar molestie....</p>
+                                                 <a rel="gallery-2" href="images/portfolio_thumb3.jpg" class="swipebox view_details" title="Webdesign work">view details</a>
+                                                 </div>
+                                        </div>
+                                        <div class="clearfix"></div>
+                                        
+                                        <h3>Portfolio with round images</h3>
+                                        <div class="portfolio_item radius8">
+                                             <div class="portfolio_image_round"><a rel="gallery-1" href="images/portfolio_thumb.jpg" class="swipebox" title="Webdesign work"><img src="images/portfolio_thumb.jpg" alt="" title="" border="0" /></a></div>
+                                                 <div class="portfolio_details">
+                                                 <h4>Webdesign work</h4>
+                                                 <p>Nullam et scelerisque erat. Cras vestibulum justo...</p>
+                                                 <a rel="gallery-2" href="images/portfolio_thumb.jpg" class="swipebox view_details" title="Webdesign work">view details</a>
+                                                 </div>
+                                        </div>
+                                         <div class="portfolio_item radius8">
+                                             <div class="portfolio_image_round"><a rel="gallery-1" href="images/portfolio_thumb2.jpg" class="swipebox" title="Webdesign work"><img src="images/portfolio_thumb2.jpg" alt="" title="" border="0" /></a></div>
+                                                 <div class="portfolio_details">
+                                                 <h4>Mobile development</h4>
+                                                 <p>Cras vestibulum justo eget lorem semper ac facilisis...</p>
+                                                 <a rel="gallery-2" href="images/portfolio_thumb2.jpg" class="swipebox view_details" title="Webdesign work">view details</a>
+                                                 </div>
+                                        </div>
+                                        <div class="portfolio_item radius8">
+                                             <div class="portfolio_image_round"><a rel="gallery-1" href="images/portfolio_thumb3.jpg" class="swipebox" title="Webdesign work"><img src="images/portfolio_thumb3.jpg" alt="" title="" border="0" /></a></div>
+                                                 <div class="portfolio_details">
+                                                 <h4>Applications</h4>
+                                                 <p>Sed ut felis non arcu pulvinar molestie....</p>
+                                                 <a rel="gallery-2" href="images/portfolio_thumb3.jpg" class="swipebox view_details" title="Webdesign work">view details</a>
+                                                 </div>
+                                        </div>
+                                           
+                                        <div class="clearfix"></div>
+      									<div class="scrolltop radius20"><a href="#" class="scrolltop4"><img src="images/icons/top.png" alt="Go on top" title="Go on top" /></a></div>
+                                        </div>
+                                        <!--End of page container-->
+                              </div>
+                    </div>
+              </div>
+              <div class="swiper-scrollbar4"></div>
+     </div>
+     </div>
+     
+      <!--Page 5 content-->
+      <div class="swiper-slide sliderbg">
+      <div class="swiper-container swiper-nested5">
+               <div class="swiper-wrapper">
+                    <div class="swiper-slide">
+                              <div class="slide-inner">
+                                        <div class="pages_container">
+                                        <h2 class="page_title">Photo Gallery 1/3</h2>
+                                            <ul class="photo_gallery_13">
+                                            <li><a rel="gallery-3" href="images/photos/photo1.jpg" title="Photo title" class="swipebox"><img src="images/photos/photo1.jpg" alt="image"></a></li>
+                                            <li><a rel="gallery-3" href="images/photos/photo2.jpg" title="Photo title" class="swipebox"><img src="images/photos/photo2.jpg" alt="image"></a></li>
+                                            <li><a rel="gallery-3" href="images/photos/photo3.jpg" title="Photo title" class="swipebox"><img src="images/photos/photo3.jpg" alt="image"></a></li>
+                                            <li><a rel="gallery-3" href="images/photos/photo4.jpg" title="Photo title" class="swipebox"><img src="images/photos/photo4.jpg" alt="image"></a></li>
+                                            <li><a rel="gallery-3" href="images/photos/photo5.jpg" title="Photo title" class="swipebox"><img src="images/photos/photo5.jpg" alt="image"></a></li>
+                                            <li><a rel="gallery-3" href="images/photos/photo6.jpg" title="Photo title" class="swipebox"><img src="images/photos/photo6.jpg" alt="image"></a></li>
+                                            </ul>
+                                        <h2>Photo Gallery 1/2</h2>
+                                            <ul class="photo_gallery_12">    
+                                            <li><a rel="gallery-4" href="images/photos/photo7.jpg" title="Photo title" class="swipebox"><img src="images/photos/photo7.jpg" alt="image"></a></li>
+                                            <li><a rel="gallery-4" href="images/photos/photo8.jpg" title="Photo title" class="swipebox"><img src="images/photos/photo8.jpg" alt="image"></a></li>
+                                            <li><a rel="gallery-4" href="images/photos/photo9.jpg" title="Photo title" class="swipebox"><img src="images/photos/photo9.jpg" alt="image"></a></li>
+                                            <li><a rel="gallery-4" href="images/photos/photo10.jpg" title="Photo title" class="swipebox"><img src="images/photos/photo10.jpg" alt="image"></a></li>
+                                            
+                                            </ul>
+                                        <h2>Photo Gallery 1/1</h2>    
+                                            <ul class="photo_gallery_11">
+                                            <li><a rel="gallery-5" href="images/photos/photo11.jpg" title="Photo title" class="swipebox"><img src="images/photos/photo11.jpg" alt="image"></a></li>
+                                            </ul>
+                                        <h2 class="page_title">Round corners 1/3</h2>
+                                            <ul class="photo_gallery_13_round">
+                                            <li><a rel="gallery-6" href="images/photos/photo1.jpg" title="Photo title" class="swipebox"><img src="images/photos/photo1.jpg" alt="image"></a></li>
+                                            <li><a rel="gallery-6" href="images/photos/photo2.jpg" title="Photo title" class="swipebox"><img src="images/photos/photo2.jpg" alt="image"></a></li>
+                                            <li><a rel="gallery-6" href="images/photos/photo3.jpg" title="Photo title" class="swipebox"><img src="images/photos/photo3.jpg" alt="image"></a></li>
+                                            <li><a rel="gallery-6" href="images/photos/photo4.jpg" title="Photo title" class="swipebox"><img src="images/photos/photo4.jpg" alt="image"></a></li>
+                                            <li><a rel="gallery-6" href="images/photos/photo5.jpg" title="Photo title" class="swipebox"><img src="images/photos/photo5.jpg" alt="image"></a></li>
+                                            <li><a rel="gallery-6" href="images/photos/photo6.jpg" title="Photo title" class="swipebox"><img src="images/photos/photo6.jpg" alt="image"></a></li>
+                                            </ul>
+                                         <div class="clearfix"></div> 
+     									 <div class="scrolltop radius20"><a href="#" class="scrolltop5"><img src="images/icons/top.png" alt="Go on top" title="Go on top" /></a></div>
+                                        </div>
+                                        <!--End of page container-->
+                              </div>
+                    </div>
+              </div>
+              <div class="swiper-scrollbar5"></div>
+     </div>
+     </div>
+      <!--Page 6 content-->
+      <div class="swiper-slide sliderbg">
+      <div class="swiper-container swiper-nested6">
+               <div class="swiper-wrapper">
+                    <div class="swiper-slide">
+                              <div class="slide-inner">
+                                        <div class="pages_container">
+                                        <h2 class="page_title">Our Videos</h2>
+                                        <p>
+                                        Just some responsive videos. You can add your video description here.
+                                        </p>
+                                            <div class="videocontainer radius6">
+                                            <OBJECT width="400" height="150"  ><PARAM name="movie" value="MPFLVPlayer.swf" /><PARAM name="allowFullScreen" value="true" /><PARAM name="FlashVars" value="fn=../../../www.youtube.com/watch@v=bwJWYlS-wnE&flvskin=MPFLVSkin.swf" /><EMBED src="MPFLVPlayer.swf"  width="400" height="150"  type="application/x-shockwave-flash" allowFullScreen="true" FlashVars="fn=../../../www.youtube.com/watch@v=bwJWYlS-wnE&flvskin=MPFLVSkin.swf"></EMBED></OBJECT>"></iframe>
+                                            </div>
+                                        <h3>Photography style</h3> 
+                                            <div class="videocontainer radius6">
+                                            <OBJECT width="400" height="150"  ><PARAM name="movie" value="MPFLVPlayer.swf" /><PARAM name="allowFullScreen" value="true" /><PARAM name="FlashVars" value="fn=../../../www.youtube.com/watch@v=BuAtapRfauM&flvskin=MPFLVSkin.swf" /><EMBED src="MPFLVPlayer.swf"  width="400" height="150"  type="application/x-shockwave-flash" allowFullScreen="true" FlashVars="fn=../../../www.youtube.com/watch@v=BuAtapRfauM&flvskin=MPFLVSkin.swf"></EMBED></OBJECT>                </div>
+                    </div>
+              </div>
+              <div class="swiper-scrollbar4"></div>
+     </div>
+     </div>
+      <!--Page 7 content-->
+      <div class="swiper-slide sliderbg">
+      <div class="swiper-container swiper-nested7">
+               <div class="swiper-wrapper">
+                    <div class="swiper-slide">
+                              <div class="slide-inner">
+                                        <div class="pages_container">
+                                        <h2 class="page_title">Our Clients</h2>
+                                       <div class="client_row"> 
+                                        <div class="service_box">
+                                          <div class="services_icon"><img src="images/icons/clients.png" alt="" title="" /></div>
+                                          <div class="service_content">
+                                          <h4>Web company</h4>
+                                          <p>Lorem ipsum dolor sit amet, <a href="#"><strong>consectetur adipisicing elit</strong></a>, sed do eiusmod tempor</p>
+                                          </div>
+                                        </div> 
+                                        <h3>Things we done for this client:</h3>
+                                        <ul class="listing">
+                                        <li>Proin dignissim risus ut quam aliquam dignissim.</li>
+                                        <li>Nunc erat eros, cursus et commodo vitae, pulvinar ac libero.</li>
+                                        <li>In erat elit, bibendum vitae commodo vitae, bibendum non justo.</li>
+                                        </ul> 
+                                        <a href="#" class="button_12 green green_borderbottom radius4">See work</a>  <a href="#" class="button_12 blue blue_borderbottom radius4">Client web</a> 
+                                      </div>
+                                      <div class="client_row">                                  
+                                        <div class="service_box">
+                                          <div class="services_icon"><img src="images/icons/clients.png" alt="" title="" /></div>
+                                          <div class="service_content">
+                                          <h4>Design company</h4>
+                                          <p>Lorem ipsum dolor sit <a href="#">amet consectetur</a> adipisicing elit, <strong>sed do eiusmod</strong> tempor</p>
+                                          </div>
+                                        </div>
+                                        <h3>Things we done for this client:</h3>
+                                        <ul class="listing">
+                                        <li>Proin dignissim risus ut quam aliquam dignissim.</li>
+                                        <li>Nunc erat eros, cursus et commodo vitae, pulvinar ac libero.</li>
+                                        <li>In erat elit, bibendum vitae commodo vitae, bibendum non justo.</li>
+                                        </ul>
+                                        <a href="#" class="button_12 green green_borderbottom radius4">See work</a>  <a href="#" class="button_12 blue blue_borderbottom radius4">Client web</a>  
+                                      </div>
+                                      
+                                      
+                                        <div class="clearfix"></div>
+    					<div class="scrolltop radius20"><a href="#" class="scrolltop7"><img src="images/icons/top.png" alt="Go on top" title="Go on top" /></a></div>
+                                        </div>
+                                        <!--End of page container-->
+                              </div>
+                    </div>
+              </div>
+              <div class="swiper-scrollbar7"></div>
+     </div>
+     </div>
+      <!--Page 8 content-->
+      <div class="swiper-slide sliderbg">
+      <div class="swiper-container swiper-nested8">
+               <div class="swiper-wrapper">
+                    <div class="swiper-slide">
+                              <div class="slide-inner">
+                                        <div class="pages_container">
+                                        <h2 class="page_title">Latest Tweets</h2>
+                                        <div class="tweet"></div>
+                                        <a href="#" class="button_11 blue">Follow Us!</a>
+                                        <div class="clearfix"></div>
+										<div class="scrolltop radius20"><a href="#" class="scrolltop8"><img src="images/icons/top.png" alt="Go on top" title="Go on top" /></a></div>
+                                        </div>
+                                        <!--End of page container-->
+                              </div>
+                    </div>
+              </div>
+              <div class="swiper-scrollbar8"></div>
+     </div>
+     </div>
+      <!--Page 9 content-->
+      <div class="swiper-slide sliderbg">
+      <div class="swiper-container swiper-nested9">
+               <div class="swiper-wrapper">
+                    <div class="swiper-slide">
+                              <div class="slide-inner">
+                                        <div class="pages_container">
+                                        
+                                        <h2 class="page_title">Get in touch</h2>
+                                            <div class="form">
+                                            <form id="contact-us" action="" method="post">
+                                            <label>Name:</label>
+                                            <input type="text" name="contactName" id="contactName" value="" class="form_input radius4 txt requiredField" />
+                                            <label>Email:</label>
+                                            <input type="text" name="email" id="email" value="" class="form_input radius4 txt requiredField email" />
+                                            <label>Message:</label>
+                                            <textarea name="comments" id="commentsText" class="form_textarea radius4 txtarea requiredField" rows="" cols=""></textarea>
+                                            <input type="hidden" name="submitted" id="submitted" value="true" />
+                                            <input name="submit" type="submit" class="form_submit radius4 green green_borderbottom" value="Send" />
+                                            </form>
+                                            </div>
+
+                                            
+                                       <h2>Let's socialize</h2>     
+                                            <ul class="social">
+                                            <li class="social_facebook"><a href="#"><img src="images/icons/social/facebook.png" alt="" title="" border="0" /></a></li>
+                                            <li class="social_twitter"><a href="#"><img src="images/icons/social/twitter.png" alt="" title="" border="0" /></a></li>
+                                            <li class="social_google"><a href="#"><img src="images/icons/social/google.png" alt="" title="" border="0" /></a></li>
+                                            <li class="social_pinterest"><a href="#"><img src="images/icons/social/pinterest.png" alt="" title="" border="0" /></a></li>
+                                            <li class="social_flickr"><a href="#"><img src="images/icons/social/flickr.png" alt="" title="" border="0" /></a></li>
+                                            <li class="social_digg"><a href="#"><img src="images/icons/social/digg.png" alt="" title="" border="0" /></a></li>
+                                            </ul>
+                                        <h2>Give Us a call</h2>    
+                                        <a href="tel_3A123 456 789" class="call_button radius8">Click To Call Now!</a>
+                                        <a href="../../../maps.google.com/maps@q=houston+usa&hl=ro&sll=37.0625,-95.677068&sspn=53.961216,114.169922&hnear=Houston,+Harris,+Texas&t=m&z=5" class="map_button radius8">View our location</a>  
+
+                                        <div class="clearfix"></div>
+                                        <div class="scrolltop radius20"><a href="#" class="scrolltop9"><img src="images/icons/top.png" alt="Go on top" title="Go on top" /></a></div>    
+                                        </div>
+                                        <!--End of page container-->
+                              </div>
+                    </div>
+              </div>
+              <div class="swiper-scrollbar9"></div>
+     </div>
+     </div>
+       
+     <!--End of pages--> 
+
+    </div>
+    <div class="pagination"></div>
+  </div>
+<script type="text/javascript" src="js/jquery-1.10.1.min.js"></script>
+<script type="text/javascript" src="js/jquery.swipebox.js"></script>
+<script type="text/javascript" src="js/idangerous.swiper-2.1.min.js"></script>
+<script type="text/javascript" src="js/idangerous.swiper.scrollbar-2.1.js"></script>
+<script type="text/javascript" src="js/jquery.tabify.js"></script>
+<script type="text/javascript" src="js/jquery.fitvids.js"></script>
+<script type="text/javascript" src="js/code.js"></script>
+<script type="text/javascript" src="js/load.js"></script>
+<!--Twitter Feed-->
+<script type="text/javascript" src="js/twitter/jquery.tweet.js" charset="utf-8"></script>
+<script type="text/javascript" charset="utf-8">
+var $ = jQuery.noConflict();  
+jQuery(function($){
+$(".tweet").tweet({
+  modpath: 'js/twitter/',
+  join_text: "auto",
+  username: "famousthemes",
+  count: 5,
+  auto_join_text_default: "we said,",
+  auto_join_text_ed: "we",
+  auto_join_text_ing: "we were",
+  auto_join_text_reply: "we replied",
+  auto_join_text_url: "we were checking out",
+  loading_text: "loading tweets..."
+});
+});
+</script>
 </body>
 </html>
